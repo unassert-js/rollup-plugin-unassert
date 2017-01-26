@@ -1,0 +1,32 @@
+'use strict';
+
+var rollup = require('rollup');
+var rollupUnassert = require('../dist/rollup-plugin-unassert.cjs.js');
+var fs = require('fs');
+
+// This is the example from https://github.com/unassert-js/unassert#example
+
+rollup.rollup({
+	entry: 'test/original.js',
+	plugins: [
+		rollupUnassert()
+	]
+}).then( function ( bundle ) {
+	// Generate bundle + sourcemap
+	const result = bundle.generate({
+		format: 'es',
+	});
+
+	var expected = fs.readFileSync('test/expected.js').toString();
+
+	if (expected === result.code) {
+		console.log("rollup-plugin-unassert unit test passed");
+		process.exit(0);
+	} else {
+		console.log("rollup-plugin-unassert unit test failed");
+		console.log("Generated code: \n", result.code);
+		console.log("Expected code: \n", expected);
+		process.exit(-1);
+	}
+
+});

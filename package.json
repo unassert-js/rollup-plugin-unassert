@@ -1,0 +1,51 @@
+{
+  "name": "rollup-plugin-unassert",
+  "version": "0.1.0",
+  "description": "RollupJS plugin to remove assertion calls via Unassert",
+  "main": "dist/rollup-plugin-unassert.cjs.js",
+  "jsnext:main": "dist/rollup-plugin-unassert.es.js",
+  "files": [
+    "src",
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "acorn": "^4.0.4",
+    "convert-source-map": "^1.3.0",
+    "escodegen": "^1.8.1",
+    "multi-stage-sourcemap": "^0.2.1",
+    "rollup-pluginutils": "^2.0.1",
+    "unassert": "^1.5.1"
+  },
+  "devDependencies": {
+    "rollup": "^0.41.4",
+    "rollup-plugin-buble": "^0.15.0"
+  },
+  "peerDependencies": {
+    "rollup": "^0.41.4"
+  },
+  "scripts": {
+    "test": "js test/test.js",
+    "pretest": "npm run build:cjs",
+    "build": "npm run build:cjs && npm run build:es",
+    "build:cjs": "rollup -c -o dist/rollup-plugin-unassert.cjs.js -f cjs",
+    "build:es": "rollup -c -o dist/rollup-plugin-unassert.es.js -f es",
+    "lint": "eslint src",
+    "prepublish": "npm run lint && npm test && npm run build:es"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/IvanSanchez/rollup-plugin-unassert.git"
+  },
+  "keywords": [
+    "rollup",
+    "rollup-plugin",
+    "unassert"
+  ],
+  "author": "Iván Sánchez Ortega <ivan@sanchezortega.es>",
+  "license": "Beerware",
+  "bugs": {
+    "url": "https://gitlab.com/IvanSanchez/rollup-plugin-unassert/issues"
+  },
+  "homepage": "https://gitlab.com/IvanSanchez/rollup-plugin-unassert"
+}
