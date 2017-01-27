@@ -25,7 +25,7 @@ export default {
 	entry: 'src/index.js',
 	dest: 'dist/my-lib.js',
 	plugins: [
-		unassert()
+		rollupUnassert()
 	]
 };
 ```
