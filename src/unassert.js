@@ -77,12 +77,12 @@ export default function unassert ( options = {} ) {
 					const reMap = reconnectSourceMap(inMap, outMap);
 					resolve({
 						code: unassertedAst.code,
-						map: reMap
+						map: reMap.toObject()
 					});
 				} else {
 					resolve({
 						code: unassertedAst.code,
-						map: outMap
+						map: outMap.toObject()
 					});
 				}
 
