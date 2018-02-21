@@ -7,26 +7,30 @@ var fs = require('fs');
 // This is the example from https://github.com/unassert-js/unassert#example
 
 rollup.rollup({
-	entry: 'test/original.js',
+	input: 'test/original.js',
 	plugins: [
 		rollupUnassert()
 	]
 }).then( function ( bundle ) {
 	// Generate bundle + sourcemap
-	const result = bundle.generate({
+	return bundle.generate({
 		format: 'es',
+		sourcemap: 'inline'
+	}).then(result => {
+		var expected = fs.readFileSync('test/expected.js').toString();
+
+		if (expected === result.code) {
+			console.log("rollup-plugin-unassert unit test passed");
+			process.exit(0);
+		} else {
+			console.log("rollup-plugin-unassert unit test failed");
+			console.log("Generated code: \n", result.code);
+			console.log("Expected code: \n", expected);
+			process.exit(-1);
+		}
 	});
 
-	var expected = fs.readFileSync('test/expected.js').toString();
-
-	if (expected === result.code) {
-		console.log("rollup-plugin-unassert unit test passed");
-		process.exit(0);
-	} else {
-		console.log("rollup-plugin-unassert unit test failed");
-		console.log("Generated code: \n", result.code);
-		console.log("Expected code: \n", expected);
-		process.exit(-1);
-	}
-
+}).catch(e => {
+	console.error(e);
+	process.exit(-1);
 });
