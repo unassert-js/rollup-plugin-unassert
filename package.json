@@ -3,35 +3,30 @@
   "version": "0.2.0",
   "description": "RollupJS plugin to remove assertion calls via Unassert",
   "main": "dist/rollup-plugin-unassert.cjs.js",
-  "jsnext:main": "dist/rollup-plugin-unassert.es.js",
+  "module": "dist/rollup-plugin-unassert.es.js",
   "files": [
     "src",
     "dist",
     "README.md"
   ],
   "dependencies": {
-    "acorn": "^4.0.4",
-    "convert-source-map": "^1.5.1",
-    "escodegen": "^1.8.1",
-    "multi-stage-sourcemap": "^0.2.1",
-    "rollup-pluginutils": "^2.0.1",
+    "acorn": "^6.1.1",
+    "convert-source-map": "^1.6.0",
+    "escodegen": "^1.11.1",
+    "multi-stage-sourcemap": "^0.3.1",
+    "rollup-pluginutils": "^2.5.0",
     "unassert": "^1.5.1"
   },
   "devDependencies": {
-    "rollup": "^0.56.2",
-    "rollup-plugin-buble": "^0.15.0"
-  },
-  "peerDependencies": {
-    "rollup": "^0.56.2"
+    "rollup": "^1.7.0",
+    "rollup-plugin-buble": "^0.19.6"
   },
   "scripts": {
     "test": "node test/test.js",
-    "pretest": "npm run build:cjs",
-    "build": "npm run build:cjs && npm run build:es",
-    "build:cjs": "rollup -c -o dist/rollup-plugin-unassert.cjs.js -f cjs",
-    "build:es": "rollup -c -o dist/rollup-plugin-unassert.es.js -f es",
+    "pretest": "npm run lint && npm run build",
+    "build": "rollup -c",
     "lint": "eslint src",
-    "prepublish": "npm run lint && npm test && npm run build:es"
+    "prepublishOnly": "npm test"
   },
   "repository": {
     "type": "git",

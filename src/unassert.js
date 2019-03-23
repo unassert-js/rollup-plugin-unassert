@@ -91,8 +91,3 @@ export default function unassert ( options = {} ) {
 		}
 	};
 }
-
-
-
-
-

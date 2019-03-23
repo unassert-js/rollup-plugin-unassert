@@ -17,14 +17,15 @@ rollup.rollup({
 		format: 'es',
 		sourcemap: 'inline'
 	}).then(result => {
+		var code = result.output[0].code;
 		var expected = fs.readFileSync('test/expected.js').toString();
 
-		if (expected === result.code) {
+		if (expected === code) {
 			console.log("rollup-plugin-unassert unit test passed");
 			process.exit(0);
 		} else {
 			console.log("rollup-plugin-unassert unit test failed");
-			console.log("Generated code: \n", result.code);
+			console.log("Generated code: \n", code);
 			console.log("Expected code: \n", expected);
 			process.exit(-1);
 		}
