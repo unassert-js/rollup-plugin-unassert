@@ -1,6 +1,6 @@
 import buble from 'rollup-plugin-buble';
 
-const config = (format) => ({
+const config = format => ({
     input: 'src/unassert.js',
     external: ['rollup-pluginutils', 'acorn', 'escodegen', 'unassert', 'convert-source-map', 'multi-stage-sourcemap'],
     output: {
