@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/IvanSanchez/rollup-plugin-unassert.git"
+    "url": "git+https://github.com/mourner/rollup-plugin-unassert.git"
   },
   "keywords": [
     "rollup",
@@ -47,7 +47,7 @@
   "author": "Iván Sánchez Ortega <ivan@sanchezortega.es>",
   "license": "Beerware",
   "bugs": {
-    "url": "https://gitlab.com/IvanSanchez/rollup-plugin-unassert/issues"
+    "url": "https://github.com/mourner/rollup-plugin-unassert/issues"
   },
-  "homepage": "https://gitlab.com/IvanSanchez/rollup-plugin-unassert"
+  "homepage": "https://github.com/mourner/rollup-plugin-unassert"
 }
