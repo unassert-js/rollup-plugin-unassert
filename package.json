@@ -6,8 +6,7 @@
   "module": "dist/rollup-plugin-unassert.es.js",
   "files": [
     "src",
-    "dist",
-    "README.md"
+    "dist"
   ],
   "dependencies": {
     "acorn": "^6.1.1",
