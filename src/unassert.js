@@ -6,9 +6,8 @@ import unassertjs from 'unassert';
 import convert from 'convert-source-map';
 import {transfer} from 'multi-stage-sourcemap';
 
-// The following utility functions are adapted from
-// https://github.com/unassert-js/unassertify/blob/master/index.js
-// by Takuto Wada (which is under MIT license)
+// Adapted from https://github.com/unassert-js/unassertify/blob/master/index.js
+// by Takuto Wada (MIT-licensed)
 
 function handleIncomingSourceMap(originalCode) {
     const commented = convert.fromSource(originalCode);
@@ -43,7 +42,6 @@ function mergeSourceMap(incomingSourceMap, outgoingSourceMap) {
 }
 
 export default function unassert(options = {}) {
-
     if (options.sourcemap === undefined) {
         options.sourcemap = true;
     }
@@ -58,35 +56,24 @@ export default function unassert(options = {}) {
             if (!filter(id)) { return null; }
 
             return new Promise((resolve) => {
-
-                // The following piece of code is adapted from
-                // https://github.com/unassert-js/unassertify/blob/master/index.js
-                // by Takuto Wada (which is under MIT license)
                 const ast = acorn.parse(code, {sourceType: 'module', locations: true});
-
-                const inMap = options.sourcemap && handleIncomingSourceMap(code);
                 const unassertedAst = escodegen.generate(unassertjs(ast), {
                     sourceMap: id,
                     sourceContent: code,
                     sourceMapWithCode: true
                 });
-                const outMap = convert.fromJSON(unassertedAst.map.toString());
 
+                const inMap = options.sourcemap && handleIncomingSourceMap(code);
+                let outMap = convert.fromJSON(unassertedAst.map.toString());
                 if (inMap) {
-                    const reMap = reconnectSourceMap(inMap, outMap);
-                    resolve({
-                        code: unassertedAst.code,
-                        map: reMap.toObject()
-                    });
-                } else {
-                    resolve({
-                        code: unassertedAst.code,
-                        map: outMap.toObject()
-                    });
+                    outMap = reconnectSourceMap(inMap, outMap);
                 }
 
+                resolve({
+                    code: unassertedAst.code,
+                    map: outMap.toObject()
+                });
             });
-
         }
     };
 }
