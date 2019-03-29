@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-unassert",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "RollupJS plugin to remove assertion calls via Unassert",
   "main": "dist/rollup-plugin-unassert.cjs.js",
   "module": "dist/rollup-plugin-unassert.es.js",
