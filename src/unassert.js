@@ -18,6 +18,7 @@ function handleIncomingSourceMap(originalCode) {
 }
 
 function overwritePropertyIfExists(name, from, to) {
+    // eslint-disable-next-line no-prototype-builtins
     if (from.hasOwnProperty(name)) {
         to.setProperty(name, from[name]);
     }
