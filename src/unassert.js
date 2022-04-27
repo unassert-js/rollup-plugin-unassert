@@ -53,6 +53,7 @@ export default function unassert(options = {}) {
     );
 
     return {
+        name: 'unassert',
         transform(code, id) {
             if (!filter(id)) { return null; }
 
