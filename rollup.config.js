@@ -1,4 +1,3 @@
-import buble from 'rollup-plugin-buble';
 
 const config = format => ({
     input: 'src/unassert.js',
@@ -6,8 +5,7 @@ const config = format => ({
     output: {
         file: `dist/rollup-plugin-unassert.${format}.js`,
         format
-    },
-    plugins: [buble()]
+    }
 });
 
 export default [

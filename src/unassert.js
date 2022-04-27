@@ -1,5 +1,5 @@
 
-import {createFilter} from 'rollup-pluginutils';
+import {createFilter} from '@rollup/pluginutils';
 import acorn from 'acorn';
 import escodegen from 'escodegen';
 import unassertjs from 'unassert';
