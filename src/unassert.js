@@ -57,11 +57,24 @@ export default function unassert(options = {}) {
             if (!filter(id)) { return null; }
 
             return new Promise((resolve) => {
-                const ast = acorn.parse(code, {sourceType: 'module', locations: true});
+                const comments = [];
+                const tokens = [];
+
+                const ast = acorn.parse(code, {
+                    sourceType: 'module',
+                    ecmaVersion: 'latest',
+                    locations: true,
+                    ranges: true,
+                    onComment: comments,
+                    onToken: tokens,
+                });
+
+                escodegen.attachComments(ast, comments, tokens);
                 const unassertedAst = escodegen.generate(unassertjs(ast), {
                     sourceMap: id,
                     sourceContent: code,
-                    sourceMapWithCode: true
+                    sourceMapWithCode: true,
+                    comment: true,
                 });
 
                 const inMap = options.sourcemap && handleIncomingSourceMap(code);
