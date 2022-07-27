@@ -10,16 +10,16 @@
   ],
   "dependencies": {
     "@rollup/pluginutils": "^4.2.1",
-    "acorn": "^8.7.1",
+    "acorn": "^8.8.0",
     "convert-source-map": "^1.8.0",
     "escodegen": "^2.0.0",
     "multi-stage-sourcemap": "^0.3.1",
     "unassert": "^1.6.0"
   },
   "devDependencies": {
-    "eslint": "^8.14.0",
+    "eslint": "^8.20.0",
     "eslint-config-mourner": "^3.0.0",
-    "rollup": "^2.70.2",
+    "rollup": "^2.77.2",
     "tape": "^5.5.3"
   },
   "scripts": {
