@@ -1,6 +1,7 @@
 
 import {createFilter} from '@rollup/pluginutils';
-import acorn from 'acorn';
+import {Parser} from 'acorn';
+import {importAssertions} from 'acorn-import-assertions';
 import escodegen from 'escodegen';
 import unassertjs from 'unassert';
 import convert from 'convert-source-map';
@@ -61,7 +62,7 @@ export default function unassert(options = {}) {
                 const comments = [];
                 const tokens = [];
 
-                const ast = acorn.parse(code, {
+                const ast = Parser.extend(importAssertions).parse(code, {
                     sourceType: 'module',
                     ecmaVersion: 'latest',
                     locations: true,
