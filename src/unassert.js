@@ -2,7 +2,7 @@
 import {createFilter} from '@rollup/pluginutils';
 import acorn from 'acorn';
 import escodegen from 'escodegen';
-import unassertjs from 'unassert';
+import {unassertAst} from 'unassert';
 import convert from 'convert-source-map';
 import {transfer} from 'multi-stage-sourcemap';
 
@@ -71,7 +71,7 @@ export default function unassert(options = {}) {
                 });
 
                 escodegen.attachComments(ast, comments, tokens);
-                const unassertedAst = escodegen.generate(unassertjs(ast), {
+                const unassertedAst = escodegen.generate(unassertAst(ast), {
                     sourceMap: id,
                     sourceContent: code,
                     sourceMapWithCode: true,
