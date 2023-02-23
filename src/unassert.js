@@ -1,7 +1,7 @@
 
 import {createFilter} from '@rollup/pluginutils';
 import acorn from 'acorn';
-import escodegen from 'escodegen';
+import escodegen from '@javascript-obfuscator/escodegen';
 import {unassertAst} from 'unassert';
 import convert from 'convert-source-map';
 import {transfer} from 'multi-stage-sourcemap';
