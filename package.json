@@ -11,7 +11,6 @@
   "dependencies": {
     "@javascript-obfuscator/escodegen": "^2.3.0",
     "@rollup/pluginutils": "^4.2.1",
-    "acorn": "^8.8.0",
     "convert-source-map": "^1.8.0",
     "multi-stage-sourcemap": "^0.3.1",
     "unassert": "^2.0.0"

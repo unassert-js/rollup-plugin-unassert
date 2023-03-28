@@ -1,6 +1,5 @@
 
 import {createFilter} from '@rollup/pluginutils';
-import acorn from 'acorn';
 import escodegen from '@javascript-obfuscator/escodegen';
 import {unassertAst} from 'unassert';
 import convert from 'convert-source-map';
@@ -58,19 +57,8 @@ export default function unassert(options = {}) {
             if (!filter(id)) { return null; }
 
             return new Promise((resolve) => {
-                const comments = [];
-                const tokens = [];
+                const ast = this.parse(code);
 
-                const ast = acorn.parse(code, {
-                    sourceType: 'module',
-                    ecmaVersion: 'latest',
-                    locations: true,
-                    ranges: true,
-                    onComment: comments,
-                    onToken: tokens,
-                });
-
-                escodegen.attachComments(ast, comments, tokens);
                 const unassertedAst = escodegen.generate(unassertAst(ast), {
                     sourceMap: id,
                     sourceContent: code,
