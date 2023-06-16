@@ -1,7 +1,7 @@
 
 const config = format => ({
     input: 'src/unassert.js',
-    external: ['rollup-pluginutils', 'acorn', '@javascript-obfuscator/escodegen', 'unassert', 'convert-source-map', 'multi-stage-sourcemap'],
+    external: ['@rollup/pluginutils', 'unassert'],
     output: {
         file: `dist/rollup-plugin-unassert.${format}.js`,
         format
