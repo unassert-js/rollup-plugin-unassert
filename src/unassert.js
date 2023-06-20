@@ -7,6 +7,8 @@ export default function unassert(options = {}) {
         options.exclude
     );
 
+    const unassertOptions = options.unassertOptions ?? {};
+
     return {
         name: 'unassert',
         transform(code, id) {
@@ -19,6 +21,7 @@ export default function unassert(options = {}) {
                 sourceMap: options.sourcemap !== false ?
                     {hires: true} :
                     false,
+                ...unassertOptions
             });
         },
     };
