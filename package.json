@@ -3,23 +3,33 @@
   "version": "0.6.0",
   "description": "RollupJS plugin to remove assertion calls via Unassert",
   "main": "dist/rollup-plugin-unassert.cjs.js",
-  "module": "dist/rollup-plugin-unassert.es.js",
+  "module": "dist/rollup-plugin-unassert.esm.js",
+  "types": "dist/rollup-plugin-unassert.d.ts",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/rollup-plugin-unassert.cjs.d.ts",
+        "require": "./dist/rollup-plugin-unassert.esm.d.ts"
+      },
+      "import": "./dist/rollup-plugin-unassert.cjs.js",
+      "require": "./dist/rollup-plugin-unassert.esm.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "src",
     "dist"
   ],
   "dependencies": {
-    "@javascript-obfuscator/escodegen": "^2.3.0",
     "@rollup/pluginutils": "^4.2.1",
-    "acorn": "^8.8.0",
-    "convert-source-map": "^1.8.0",
-    "multi-stage-sourcemap": "^0.3.1",
     "unassert": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^8.21.0",
     "eslint-config-mourner": "^3.0.0",
     "rollup": "^2.77.3",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-copy": "^3.4.0",
     "tape": "^5.5.3"
   },
   "scripts": {
@@ -31,6 +41,9 @@
   },
   "eslintConfig": {
     "extends": "mourner",
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
     "rules": {
       "no-process-exit": 0
     }
